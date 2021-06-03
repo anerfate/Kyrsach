@@ -61,7 +61,7 @@ https://github.com/anerfate/Kyrsach
 
 ### Приложение было разработанно в Visual Studio, пример работы программы:
 ### Главное окно:
-![MainWindow](./img/MaiwWidnow.png)
+![MainWindow](./img/MaiwWidnow.PNG)
 #### Прмер кода разметки страницы:
 ### Логин: Admin
 ### Пароль: 1111
