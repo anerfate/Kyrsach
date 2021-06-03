@@ -63,8 +63,7 @@ https://github.com/anerfate/Kyrsach
 ### Главное окно:
 ![MainWindow](./img/MaiwWidnow.PNG)
 #### Прмер кода разметки страницы:
-### Логин: Admin
-### Пароль: 1111
+
 
 ```xml
 <Window x:Class="BakerySad.MainWindow"
