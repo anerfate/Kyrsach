@@ -617,10 +617,11 @@ namespace BakerySad
     </Grid>
 </Window>
 
-    ```
+```
 #### Пример Логики страницы редактирования заказов:
 
 ```cs
+
 namespace WpfApp1.windows
 {
     /// <summary>

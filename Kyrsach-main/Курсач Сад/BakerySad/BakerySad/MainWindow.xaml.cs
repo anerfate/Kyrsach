@@ -98,7 +98,17 @@ namespace BakerySad
                         .OrderByDescending(item => Double.Parse(item.SalaryString))
                         .ToList();
             }
-            set { _ServiceList = value; }
+            set { 
+                _ServiceList = value; 
+                
+                    if (PropertyChanged != null)
+                    {
+                    // при изменении фильтра список перерисовывается
+                    PropertyChanged(this, new PropertyChangedEventArgs("ServiceList"));
+                    PropertyChanged(this, new PropertyChangedEventArgs("ServicesCount"));
+                    PropertyChanged(this, new PropertyChangedEventArgs("FilteredServicesCount"));
+                    }
+                }
         }
 
         public MainWindow()
@@ -243,10 +253,14 @@ namespace BakerySad
         {
             // у DataGrid-a есть свойство SelectedItem - его приводим к типу Service
             var item = ProductListView.SelectedItem as User;
-
+            if (item == null)
+            {
+                MessageBox.Show("Что бы удалить выберите из списка");
+                return;
+            }
             // по условиям задачи нельзя удалять только те услуги, которые уже оказаны
             // свойство ClientService ссылается на таблицу оказанных услуг
-            
+
 
             // метод Remove нужно завернуть в конструкцию try..catch, на случай, если 
             // база спроектирована криво и нет каскадного удаления - это сделайте сами
@@ -257,11 +271,13 @@ namespace BakerySad
 
             // перечитываем изменившийся список, не забывая в сеттере вызвать PropertyChanged
             ServiceList = Core.DB.User.ToList();
+            PropertyChanged(this, new PropertyChangedEventArgs("ServiceList"));
+            PropertyChanged(this, new PropertyChangedEventArgs("FilteredServiceCount"));
+            PropertyChanged(this, new PropertyChangedEventArgs("ServiceCount"));
         }
         private void AddOrder_Click(object sender, RoutedEventArgs e)
         {
             var NewOrder = new User();
-
             var NewOrderWindow = new AddWindow(NewOrder);
             if ((bool)NewOrderWindow.ShowDialog())
             {
@@ -275,6 +291,13 @@ namespace BakerySad
         private void EditOrder_Click(object sender, RoutedEventArgs e)
         {
             var SelectedOrder = ProductListView.SelectedItem as User;
+
+            if (SelectedOrder == null)
+            {
+                MessageBox.Show("Что бы редактировать выберите из списка");
+                return;
+            }
+
             var EditOrderWindow = new AddWindow(SelectedOrder);
             if ((bool)EditOrderWindow.ShowDialog())
             {

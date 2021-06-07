@@ -65,18 +65,7 @@
                         </ComboBox.ItemTemplate>
                     </ComboBox>
 
-                    <Label Content="Рабочий стаж"/>
-                    <ComboBox
-                HorizontalAlignment="left"
-                ItemsSource="{Binding WorkList}"
-                SelectedItem="{Binding CurrentService.User}">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <Label Content="{Binding WorkExperience}"/>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-
+                   
                 </StackPanel>
                 
                 
